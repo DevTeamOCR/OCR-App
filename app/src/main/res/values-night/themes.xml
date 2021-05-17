@@ -1,16 +1,81 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.OCRApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.OCRApp" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/secondaryDarkColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="colorOnPrimary">@color/primaryTextColor</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/secondaryDarkColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryColor</item>
+        <item name="colorOnSecondary">@color/secondaryTextColor</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Contained Buttons with all parameters. -->
+    <style name="ContainedButtonStyle" parent="Widget.MaterialComponents.Button">
+
+        <item name="fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="textAllCaps">false</item>
+        <item name="strokeColor">@color/secondaryColor</item>
+        <item name="cornerRadius">30dp</item>
+
+    </style>
+
+    <!-- Text Button  -->
+    <style name="TextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="textAllCaps">false</item>
+
+    </style>
+
+    <!-- EditText with font -->
+    <style name="EditTextStyle" parent="">
+
+        <item name="fontFamily">@font/quicksand</item>
+
+    </style>
+
+    <!-- TextInput Normal OutlinedBox -->
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <item name="hintTextColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="boxStrokeColor">@color/secondaryTextColor</item>
+        <item name="fontFamily">@font/quicksand</item>
+
+    </style>
+
+    <!-- TextInput Options Menu OutlinedBox -->
+    <style name="TextInputMenuOptionsStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+
+        <item name="boxStrokeColor">@color/secondaryTextColor</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="hintTextColor">@color/primaryTextColor</item>
+
+    </style>
+
+    <!-- Main Style for Text Views -->
+    <style name="TextViewStyle" parent="Widget.AppCompat.TextView">
+
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+
+    </style>
+
+    <!-- Secondary style for text views -->
+    <style name="TextViewSecondaryStyle" parent="Widget.AppCompat.TextView">
+
+        <item name="fontFamily">@font/quicksand</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:textSize">24sp</item>
+
+    </style>
+
 </resources>
