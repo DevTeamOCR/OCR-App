@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">OCR App</string>
+    <string name="email">Correo</string>
+    <string name="password">Contraseña</string>
+    <string name="forgot_pass">¿Olvidaste tu contraseña?</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="no_account">¿No tienes una cuenta?</string>
+    <string name="register_here">Regístrate aquí</string>
 </resources>
