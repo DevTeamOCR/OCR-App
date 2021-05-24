@@ -51,10 +51,14 @@
     <string name="message_groups">Crea un grupo para agrupar mediciones</string>
     <string name="create_group">Crear un grupo</string>
     <string name="name_group">Nombre del grupo</string>
+    <string name="create">Crear</string>
     <string name="measure">Medicion</string>
     <string name="export_as">Exportar como</string>
     <string name="tag">Tag</string>
     <string name="group">Grupo</string>
+    <string name="cameraMenu">Cámara</string>
+    <string name="homeMenu">Home</string>
+    <string name="meterMenu">Medidor</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
