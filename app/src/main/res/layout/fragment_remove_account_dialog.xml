@@ -5,7 +5,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:background="@color/secondaryLightColor"
-    tools:context=".AddMeterDialog">
+    tools:context=".RemoveAccountDialog">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -16,14 +16,14 @@
 
 
         <TextView
-            android:id="@+id/TVAddMeter"
+            android:id="@+id/TVRemoveAccount"
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="@string/add_meter"
+            android:text="@string/remove_account"
             android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,8 +35,8 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="right"
-            android:background="#00FFFFFF"
             android:layout_marginStart="50dp"
+            android:background="#00FFFFFF"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:scaleType="fitCenter"
@@ -47,7 +47,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfNameMeter"
+        android:id="@+id/tfPass"
         style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,17 +67,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tfSerialMeter"
+        android:id="@+id/tfConfirmPass"
         style="@style/TextInputLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
-        android:hint="@string/email"
+        android:hint="@string/confirm_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfNameMeter">
+        app:layout_constraintTop_toBottomOf="@+id/tfPass">
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
@@ -95,11 +95,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="10dp"
-        android:text="@string/add"
+        android:text="@string/remove"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tfSerialMeter" />
+        app:layout_constraintTop_toBottomOf="@+id/tfConfirmPass" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

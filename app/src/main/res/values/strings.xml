@@ -23,7 +23,8 @@
     <string name="client">Cliente</string>
     <string name="company">Empresa</string>
     <string name="meters">Medidores</string>
-    <string name="message_meters">Aún no tienes medidores Agrega medidores para realizar un seguimiento de tu consumo</string>
+    <string name="message_meters1">Aún no tienes medidores</string>
+    <string name="message_meters2">Agrega medidores para realizar un seguimiento de tu consumo</string>
     <string name="add_meter">Agregar Medidor</string>
     <string name="meter_name">Nombre del medidor</string>
     <string name="meter_serial">Serial del medidor (Opcional)</string>
@@ -46,7 +47,7 @@
     <string name="logout">Cerrar sesión</string>
     <string name="new_name">Nuevo nombre</string>
     <string name="remove">Eliminar</string>
-    <string name="measures">Mediciones</string>
+    <string name="measures"># Mediciones</string>
     <string name="groups">Grupos</string>
     <string name="message_groups">Crea un grupo para agrupar mediciones</string>
     <string name="create_group">Crear un grupo</string>
@@ -59,6 +60,7 @@
     <string name="cameraMenu">Cámara</string>
     <string name="homeMenu">Home</string>
     <string name="meterMenu">Medidor</string>
+    <string name="numberConsumptions"># Consumos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
