@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashScreenFragment">
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.ocrapp.view.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.ocrapp.view.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_recoverPasswordFragment"
+            app:destination="@id/recoverPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_customerActivity"
+            app:destination="@id/customerActivity" />
+        <action
+            android:id="@+id/action_loginFragment_to_enterpriseActivity"
+            app:destination="@id/enterpriseActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.ocrapp.view.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordFragment"
+        android:name="com.example.ocrapp.view.RecoverPasswordFragment"
+        android:label="fragment_recover_password"
+        tools:layout="@layout/fragment_recover_password" >
+        <action
+            android:id="@+id/action_recoverPasswordFragment_to_recoverPasswordTwoFragment"
+            app:destination="@id/recoverPasswordTwoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recoverPasswordTwoFragment"
+        android:name="com.example.ocrapp.view.RecoverPasswordTwoFragment"
+        android:label="fragment_recover_password_two"
+        tools:layout="@layout/fragment_recover_password_two" />
+    <activity
+        android:id="@+id/customerActivity"
+        android:name="com.example.ocrapp.view.CustomerActivity"
+        android:label="activity_customer"
+        tools:layout="@layout/activity_customer" />
+    <activity
+        android:id="@+id/enterpriseActivity"
+        android:name="com.example.ocrapp.view.EnterpriseActivity"
+        android:label="activity_enterprise"
+        tools:layout="@layout/activity_enterprise" />
 </navigation>

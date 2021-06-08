@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OCRApp">
-        <activity android:name=".MainActivity2"></activity>
+        <activity android:name=".view.EnterpriseActivity"></activity>
+        <activity
+            android:name=".view.CustomerActivity"
+            android:label="@string/title_activity_customer"
+            android:theme="@style/Theme.OCRApp.NoActionBar" />
+        <activity android:name=".MainActivity2" />
         <activity android:name=".Register" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
