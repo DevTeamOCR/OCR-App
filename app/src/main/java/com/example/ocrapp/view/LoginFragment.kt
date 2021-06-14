@@ -37,7 +37,10 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnLogin.setOnClickListener{
-            viewModel.login(binding.tfEmailLogin.editText?.text.toString(),binding.tfPasswordLogin.editText?.text.toString(),it)
+            viewModel.login(
+                binding.tfEmailLogin.editText!!.text.toString(),
+                binding.tfPasswordLogin.editText!!.text.toString(), it, this
+            )
         }
 
 

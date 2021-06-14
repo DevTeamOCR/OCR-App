@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="350dp"
     android:layout_height="wrap_content"
-    android:background="@color/secondaryLightColor"
-    tools:context=".RemoveAccountDialog">
+    android:background="@color/secondaryLightColor">
 
     <LinearLayout
         android:id="@+id/linearLayout"
