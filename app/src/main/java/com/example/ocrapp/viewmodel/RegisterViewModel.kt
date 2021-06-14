@@ -15,9 +15,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class RegisterViewModel {
 
-    val auth = FirebaseAuth.getInstance()
-    val firestore = FirebaseFirestore.getInstance()
-    val user = MutableLiveData<User>()
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+    private val user = MutableLiveData<User>()
 
     fun registerUser(password: TextInputLayout, view: View, fragment: Fragment) {
 
