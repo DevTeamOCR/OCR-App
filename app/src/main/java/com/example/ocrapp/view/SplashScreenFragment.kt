@@ -10,6 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.ocrapp.R
 import com.example.ocrapp.databinding.FragmentSplashScreenBinding
+import com.example.ocrapp.model.User
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class SplashScreenFragment : Fragment() {
 
@@ -32,7 +37,38 @@ class SplashScreenFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_loginFragment)
+
+            val user = FirebaseAuth.getInstance().currentUser
+            val firestore = FirebaseFirestore.getInstance()
+
+
+            if(user == null){
+
+                Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_loginFragment)
+
+            }else{
+
+                firestore.collection("users").document(user.uid).get().addOnSuccessListener {
+
+                    val logged  = it.toObject<User>()
+
+                    if(logged?.type.equals("customer")){
+                        Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_customerActivity)
+                    }else{
+                        Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_enterpriseActivity)
+                    }
+
+                }.addOnFailureListener {
+
+                    Snackbar.make(binding.logo,"Ha ocurrido un error", 3000).show()
+
+                }
+
+
+            }
+
+
+
         }, 3000)
 
     }

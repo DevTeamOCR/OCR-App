@@ -13,6 +13,12 @@
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_customerActivity"
+            app:destination="@id/customerActivity" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_enterpriseActivity"
+            app:destination="@id/enterpriseActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -38,8 +44,11 @@
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registerFragment_to_enterpriseActivity"
+            app:destination="@id/enterpriseActivity" />
+        <action
+            android:id="@+id/action_registerFragment_to_customerActivity"
+            app:destination="@id/customerActivity" />
     </fragment>
     <fragment
         android:id="@+id/recoverPasswordFragment"

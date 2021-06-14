@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.ocrapp.databinding.FragmentLoginBinding
+import com.example.ocrapp.util.AppUtils
 import com.example.ocrapp.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
@@ -38,8 +39,8 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener{
             viewModel.login(
-                binding.tfEmailLogin.editText!!.text.toString(),
-                binding.tfPasswordLogin.editText!!.text.toString(), it, this
+                AppUtils.getText(binding.tfEmailLogin),
+                AppUtils.getText(binding.tfPasswordLogin), it, this
             )
         }
 

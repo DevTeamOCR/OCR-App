@@ -11,11 +11,12 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class LoginViewModel: ViewModel() {
 
-    val auth = FirebaseAuth.getInstance()
-    val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
 
     fun goToForgotPassword(view: View) {
@@ -30,36 +31,37 @@ class LoginViewModel: ViewModel() {
     fun login(email: String, pass: String, view: View, fragment: Fragment) {
 
         Snackbar.make(fragment.requireView(), "Iniciando sesión...", Snackbar.LENGTH_SHORT).show()
-        if (!email.isEmpty() && !pass.isEmpty()) {
 
-            auth!!.signInWithEmailAndPassword(email, pass)
-                .addOnSuccessListener { authResult: AuthResult? ->
+        if (email.isNotEmpty() && pass.isNotEmpty()) {
 
-                    val id = auth!!.currentUser!!.uid
-                    firestore.collection("users").document(id).get()
-                        .addOnSuccessListener { user: DocumentSnapshot ->
+            auth.signInWithEmailAndPassword(email, pass)
+                .addOnSuccessListener {
 
-                            val myUser = user.toObject(User::class.java)
+                    val id = auth.currentUser?.uid
+                    if (id != null) {
+                        firestore.collection("users").document(id).get()
+                            .addOnSuccessListener { user: DocumentSnapshot ->
 
-                            if (myUser!!.type.equals("customer", ignoreCase = true)) {
+                                val myUser = user.toObject<User>()
 
-                                Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_customerActivity)
+                                if (myUser?.type.equals("customer")) {
 
-                            } else {
+                                    Navigation.findNavController(view)
+                                        .navigate(R.id.action_loginFragment_to_customerActivity)
 
-                                Navigation.findNavController(view)
-                                    .navigate(R.id.action_loginFragment_to_enterpriseActivity)
+                                } else {
 
+                                    Navigation.findNavController(view)
+                                        .navigate(R.id.action_loginFragment_to_enterpriseActivity)
+
+                                }
+                                fragment.requireActivity().finishAffinity()
                             }
-                            fragment.requireActivity().finishAffinity()
+                    }
 
 
-                        }
-
-
-                }.addOnFailureListener { auth: Exception ->
-                Snackbar.make(view, auth.localizedMessage, Snackbar.LENGTH_SHORT).show()
+                }.addOnFailureListener {fail ->
+                Snackbar.make(view, fail.message.toString(),Snackbar.LENGTH_SHORT).show()
             }
 
         } else {
@@ -69,6 +71,5 @@ class LoginViewModel: ViewModel() {
 
 
     }
-
 
 }
