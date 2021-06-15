@@ -8,7 +8,7 @@
         android:id="@+id/splashScreenFragment"
         android:name="com.example.ocrapp.view.SplashScreenFragment"
         android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
+        tools:layout="@layout/fragment_splash_screen">
         <action
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment"
@@ -54,7 +54,7 @@
         android:id="@+id/recoverPasswordFragment"
         android:name="com.example.ocrapp.view.RecoverPasswordFragment"
         android:label="fragment_recover_password"
-        tools:layout="@layout/fragment_recover_password" >
+        tools:layout="@layout/fragment_recover_password">
         <action
             android:id="@+id/action_recoverPasswordFragment_to_recoverPasswordTwoFragment"
             app:destination="@id/recoverPasswordTwoFragment" />

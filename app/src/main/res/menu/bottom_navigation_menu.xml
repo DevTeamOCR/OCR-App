@@ -3,22 +3,22 @@
 
     <item
 
-        android:id="@+id/homeUser"
+        android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:title="@string/homeMenu" />
 
 
     <item
 
-        android:id="@+id/cameraUser"
+        android:id="@+id/cameraFragment"
         android:icon="@drawable/ic_camera"
         android:title="@string/cameraMenu" />
 
 
     <item
 
-        android:id="@+id/meterUser"
+        android:id="@+id/metersFragment"
         android:icon="@drawable/ic_meter"
-        android:title="@string/meterMenu" />
+        android:title="@string/metersMenu" />
 
 </menu>

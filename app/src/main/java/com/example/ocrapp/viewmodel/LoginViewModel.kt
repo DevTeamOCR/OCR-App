@@ -7,13 +7,12 @@ import androidx.navigation.Navigation
 import com.example.ocrapp.R
 import com.example.ocrapp.model.User
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 
-class LoginViewModel: ViewModel() {
+class LoginViewModel : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
@@ -60,9 +59,9 @@ class LoginViewModel: ViewModel() {
                     }
 
 
-                }.addOnFailureListener {fail ->
-                Snackbar.make(view, fail.message.toString(),Snackbar.LENGTH_SHORT).show()
-            }
+                }.addOnFailureListener { fail ->
+                    Snackbar.make(view, fail.message.toString(), Snackbar.LENGTH_SHORT).show()
+                }
 
         } else {
             val typeData = "Ingrese los datos de su cuenta"

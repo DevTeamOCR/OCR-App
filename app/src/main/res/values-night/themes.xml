@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
     </style>
 
     <!-- Contained Buttons with all parameters. -->
@@ -76,6 +78,16 @@
         <item name="android:textColor">@color/primaryColor</item>
         <item name="android:textSize">24sp</item>
 
+    </style>
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView.PrimarySurface">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/secondaryColor</item>
+        <item name="colorPrimary">@color/secondaryTextColor</item>
+        <item name="colorOnSurface">@color/primaryColor</item>
     </style>
 
 </resources>

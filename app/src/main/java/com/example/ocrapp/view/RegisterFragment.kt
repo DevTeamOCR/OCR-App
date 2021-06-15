@@ -30,7 +30,7 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentRegisterBinding.inflate(inflater,container,false)
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -48,10 +48,10 @@ class RegisterFragment : Fragment() {
                 helperText = "Debe contener al menos 6 caracteres"
             }
 
-            btnRegister.setOnClickListener{
-                if(verifyRegister()){
+            btnRegister.setOnClickListener {
+                if (verifyRegister()) {
                     updateUser()
-                    viewModel.register(AppUtils.getText(tfPassword),it)
+                    viewModel.register(AppUtils.getText(tfPassword), it)
                 }
             }
 
@@ -59,15 +59,15 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun fillTypes(){
-        val types = arrayOf(getString(R.string.customer),getString(R.string.enterprise))
-        val adapter = ArrayAdapter(requireContext(),R.layout.dropdown_menu_popup_item,types)
+    private fun fillTypes() {
+        val types = arrayOf(getString(R.string.customer), getString(R.string.enterprise))
+        val adapter = ArrayAdapter(requireContext(), R.layout.dropdown_menu_popup_item, types)
         binding.acTvTypeMenu.inputType = InputType.TYPE_NULL
         binding.acTvTypeMenu.keyListener = null
         binding.acTvTypeMenu.setAdapter(adapter)
     }
 
-    private fun updateUser(){
+    private fun updateUser() {
 
         binding.apply {
 
@@ -75,10 +75,10 @@ class RegisterFragment : Fragment() {
             val email = AppUtils.getText(tfEmail)
             var type = AppUtils.getText(tfUserType)
 
-            if(type == "Cliente"){
+            if (type == "Cliente") {
                 type = "customer"
-            }else{
-               type = "enterprise"
+            } else {
+                type = "enterprise"
             }
 
             val user = User(name = name, email = email, type = type)
@@ -87,7 +87,7 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun verifyRegister(): Boolean{
+    private fun verifyRegister(): Boolean {
 
         var checked = true
 
@@ -118,7 +118,7 @@ class RegisterFragment : Fragment() {
             val pass = AppUtils.getText(tfPassword)
             val confPassword = AppUtils.getText(tfConfirmPassword)
 
-            if(pass != confPassword){
+            if (pass != confPassword) {
                 checked = false
             }
         }
@@ -126,7 +126,7 @@ class RegisterFragment : Fragment() {
         return checked
     }
 
-    private fun listeners(){
+    private fun listeners() {
 
         binding.apply {
             AppUtils.listenerError(tfName)
@@ -139,9 +139,9 @@ class RegisterFragment : Fragment() {
                     val pass = AppUtils.getText(tfPassword)
                     val confPass = AppUtils.getText(tfConfirmPassword)
 
-                    if(pass != confPass){
-                        AppUtils.putError(tfConfirmPassword,"Las contraseñas no coinciden")
-                    }else{
+                    if (pass != confPass) {
+                        AppUtils.putError(tfConfirmPassword, "Las contraseñas no coinciden")
+                    } else {
                         AppUtils.removeError(tfConfirmPassword)
                     }
                 }
@@ -151,7 +151,7 @@ class RegisterFragment : Fragment() {
 
                 afterTextChanged = {
 
-                    if(AppUtils.listenerCheckPassword(tfPassword)){
+                    if (AppUtils.listenerCheckPassword(tfPassword)) {
                         AppUtils.removeError(tfPassword)
                     }
                 }

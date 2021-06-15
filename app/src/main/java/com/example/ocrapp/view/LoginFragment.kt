@@ -23,7 +23,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(inflater,container,false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,11 +33,11 @@ class LoginFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
 
 
-        binding.btnForgotPasswordLogin.setOnClickListener{
+        binding.btnForgotPasswordLogin.setOnClickListener {
             viewModel.goToForgotPassword(it)
         }
 
-        binding.btnLogin.setOnClickListener{
+        binding.btnLogin.setOnClickListener {
             viewModel.login(
                 AppUtils.getText(binding.tfEmailLogin),
                 AppUtils.getText(binding.tfPasswordLogin), it, this

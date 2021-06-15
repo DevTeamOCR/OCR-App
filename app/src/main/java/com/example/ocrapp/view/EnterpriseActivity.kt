@@ -1,7 +1,7 @@
 package com.example.ocrapp.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.ocrapp.R
 
 class EnterpriseActivity : AppCompatActivity() {

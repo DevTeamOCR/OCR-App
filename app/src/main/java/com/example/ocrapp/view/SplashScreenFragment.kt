@@ -41,32 +41,33 @@ class SplashScreenFragment : Fragment() {
             val user = FirebaseAuth.getInstance().currentUser
             val firestore = FirebaseFirestore.getInstance()
 
+            if (user == null) {
 
-            if(user == null){
+                Navigation.findNavController(binding.logo)
+                    .navigate(R.id.action_splashScreenFragment_to_loginFragment)
 
-                Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_loginFragment)
-
-            }else{
+            } else {
 
                 firestore.collection("users").document(user.uid).get().addOnSuccessListener {
 
-                    val logged  = it.toObject<User>()
+                    val logged = it.toObject<User>()
 
-                    if(logged?.type.equals("customer")){
-                        Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_customerActivity)
-                    }else{
-                        Navigation.findNavController(binding.logo).navigate(R.id.action_splashScreenFragment_to_enterpriseActivity)
+                    if (logged?.type.equals("customer")) {
+                        Navigation.findNavController(binding.logo)
+                            .navigate(R.id.action_splashScreenFragment_to_customerActivity)
+                    } else {
+                        Navigation.findNavController(binding.logo)
+                            .navigate(R.id.action_splashScreenFragment_to_enterpriseActivity)
                     }
 
                 }.addOnFailureListener {
 
-                    Snackbar.make(binding.logo,"Ha ocurrido un error", 3000).show()
+                    Snackbar.make(binding.logo, "Ha ocurrido un error", 3000).show()
 
                 }
 
 
             }
-
 
 
         }, 3000)
