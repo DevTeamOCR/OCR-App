@@ -44,9 +44,7 @@ class RegisterFragment : Fragment() {
 
         binding.apply {
 
-            tfPassword.apply {
-                helperText = "Debe contener al menos 6 caracteres"
-            }
+            tfPassword.helperText = "Debe contener al menos 6 caracteres"
 
             btnRegister.setOnClickListener {
                 if (verifyRegister()) {

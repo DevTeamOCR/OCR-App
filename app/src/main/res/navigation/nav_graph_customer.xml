@@ -14,16 +14,7 @@
         android:id="@+id/metersFragment"
         android:name="com.example.ocrapp.view.MetersFragment"
         android:label="fragment_meters"
-        tools:layout="@layout/fragment_meters">
-        <action
-            android:id="@+id/action_metersFragment_to_meterConsumptionsFragment"
-            app:destination="@id/meterConsumptionsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/meterConsumptionsFragment"
-        android:name="com.example.ocrapp.view.MeterConsumptionsFragment"
-        android:label="fragment_meter_consumptions"
-        tools:layout="@layout/fragment_meter_consumptions" />
+        tools:layout="@layout/fragment_meters" />
     <fragment
         android:id="@+id/cameraFragment"
         android:name="com.example.ocrapp.view.CameraFragment"

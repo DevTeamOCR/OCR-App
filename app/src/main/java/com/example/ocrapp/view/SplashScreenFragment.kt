@@ -60,9 +60,12 @@ class SplashScreenFragment : Fragment() {
                             .navigate(R.id.action_splashScreenFragment_to_enterpriseActivity)
                     }
 
+                    requireActivity().finishAffinity()
+
                 }.addOnFailureListener {
 
-                    Snackbar.make(binding.logo, "Ha ocurrido un error", 3000).show()
+                    Snackbar.make(binding.logo, "Ha ocurrido un error", Snackbar.LENGTH_SHORT)
+                        .show()
 
                 }
 
@@ -70,7 +73,7 @@ class SplashScreenFragment : Fragment() {
             }
 
 
-        }, 3000)
+        }, 1500)
 
     }
 }
