@@ -8,9 +8,9 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object DetectService {
 
-    private val logger = HttpLoggingInterceptor()
-    private val retrofit: Retrofit
-    private val api: DetectAPI
+    val logger = HttpLoggingInterceptor()
+    val retrofit: Retrofit
+    val api: DetectAPI
 
     init {
 
