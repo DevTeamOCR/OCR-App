@@ -17,7 +17,7 @@ object DetectService {
         logger.level = HttpLoggingInterceptor.Level.BODY
 
         retrofit = Retrofit.Builder()
-            .baseUrl("35.224.180.242:5000/")
+            .baseUrl("http://35.224.180.242:5000/")
             .addConverterFactory(GsonConverterFactory.create())
             .addConverterFactory(ScalarsConverterFactory.create())
             .client(OkHttpClient().newBuilder().addInterceptor(logger).build())
