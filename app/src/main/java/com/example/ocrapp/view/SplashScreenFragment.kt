@@ -64,7 +64,7 @@ class SplashScreenFragment : Fragment() {
 
                 }.addOnFailureListener {
 
-                    Snackbar.make(binding.logo, "Ha ocurrido un error", Snackbar.LENGTH_SHORT)
+                    Snackbar.make(binding.logo, "Ha ocurrido un error", Snackbar.LENGTH_INDEFINITE)
                         .show()
 
                 }
