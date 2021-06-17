@@ -5,7 +5,7 @@ import com.example.ocrapp.model.Detection
 class UtilsDetection(val response: DetectionResponse) {
 
     // Getting detections readable from the response.
-    fun convert(): MutableList<Detection>{
+    fun convert(): MutableList<Detection> {
 
         // List of boxes with corresponding scores and classes.
         val detections = mutableListOf<Detection>()
@@ -16,7 +16,7 @@ class UtilsDetection(val response: DetectionResponse) {
         val classes = response.classes[0]
 
         // Getting boxes
-        for ((index,box) in boxes.withIndex()){
+        for ((index, box) in boxes.withIndex()) {
 
             var xmin = 0.0
             var ymin = 0.0
@@ -24,9 +24,9 @@ class UtilsDetection(val response: DetectionResponse) {
             var ymax = 0.0
 
             // Getting positions for each box
-            for((indexPos,pos) in box.withIndex()){
+            for ((indexPos, pos) in box.withIndex()) {
 
-                when(indexPos){
+                when (indexPos) {
                     0 -> xmin = pos
                     1 -> ymin = pos
                     2 -> xmax = pos
@@ -35,18 +35,18 @@ class UtilsDetection(val response: DetectionResponse) {
             }
 
             // Box with corresponding score and class
-            val myBox = Box(xmin,ymin,xmax,ymax)
+            val myBox = Box(xmin, ymin, xmax, ymax)
             val score = Score(scores[index])
             val clazz = Class(classes[index])
 
             // Adding the box with score and a class
-            detections.add(Detection(myBox,score,clazz))
+            detections.add(Detection(myBox, score, clazz))
 
         }
         return detections
     }
 
-    fun sortDetectionsByBoxXmin() : List<Detection>{
+    fun sortDetectionsByBoxXmin(): List<Detection> {
 
         val detections = convert()
 
@@ -62,15 +62,15 @@ class UtilsDetection(val response: DetectionResponse) {
         var numberString = "0"
         val detectionsSortedByBoxXmin = sortDetectionsByBoxXmin()
 
-        for(detection in detectionsSortedByBoxXmin){
+        for (detection in detectionsSortedByBoxXmin) {
 
-            if(detection.clazz.value != 11.0){
+            if (detection.clazz.value != 11.0) {
 
-                if(detection.score.value >= reliability){
+                if (detection.score.value >= reliability) {
 
-                    numberString += if(detection.clazz.value == 10.0){
+                    numberString += if (detection.clazz.value == 10.0) {
                         0
-                    }else{
+                    } else {
                         detection.clazz.value.toInt()
                     }
                 }
