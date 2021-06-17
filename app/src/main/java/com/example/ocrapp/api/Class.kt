@@ -1,4 +1,4 @@
 package com.example.ocrapp.api
 
-class Class(val value: Double) {
+data class Class(val value: Double) {
 }
