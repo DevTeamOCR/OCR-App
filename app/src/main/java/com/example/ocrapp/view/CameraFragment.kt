@@ -171,6 +171,7 @@ class CameraFragment : Fragment() {
             // Capture for quality
             imageCapture = ImageCapture.Builder()
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
+                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
                 .build()
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -278,7 +279,7 @@ class CameraFragment : Fragment() {
                 var result = detectionResponse.await()
 
                 // Converting response to a readable data
-                val detection = UtilsDetection(result).consumptionDetected(0.1)
+                val detection = UtilsDetection(result).consumptionDetected(0.5)
 
                 // Stop loading...
                 binding.progressBar.isIndeterminate = false

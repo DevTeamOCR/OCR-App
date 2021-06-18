@@ -23,8 +23,7 @@
     <string name="client">Cliente</string>
     <string name="company">Empresa</string>
     <string name="meters">Medidores</string>
-    <string name="message_meters1">Aún no tienes medidores</string>
-    <string name="message_meters2">Agrega medidores para realizar un seguimiento de tu consumo</string>
+    <string name="message_meters1">Aún no tienes medidores \n Agrega medidores para realizar un seguimiento de tu consumo</string>
     <string name="add_meter">Agregar Medidor</string>
     <string name="meter_name">Nombre del medidor</string>
     <string name="meter_serial">Serial del medidor (Opcional)</string>

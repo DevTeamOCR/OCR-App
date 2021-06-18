@@ -1,4 +1,4 @@
 package com.example.ocrapp.model
 
-class Meter {
+data class Meter(val id: String, val name: String, val serial: String) {
 }

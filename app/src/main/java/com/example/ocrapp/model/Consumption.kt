@@ -1,4 +1,4 @@
 package com.example.ocrapp.model
 
-class Consumption {
+class Consumption(val rate: Double, val date: String, val value: Double) {
 }
