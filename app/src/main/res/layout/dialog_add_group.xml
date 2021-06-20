@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="320dp"
     android:layout_height="wrap_content"
-    android:background="@color/secondaryLightColor"
-    tools:context=".GroupDialog">
+    android:background="@color/secondaryLightColor">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -18,6 +17,7 @@
         <TextView
             android:id="@+id/TVCreateGroup"
             style="@style/TextViewStyle"
+            android:textColor="@color/secondaryTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -40,7 +40,10 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/secondaryTextColor" />
 
 
     </LinearLayout>
@@ -48,6 +51,8 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tfNameGroup"
         style="@style/TextInputLayoutStyle"
+        android:textColorHint="@color/secondaryTextColor"
+        app:hintTextColor="@color/secondaryTextColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -60,14 +65,18 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/EditTextStyle"
+            android:textColor="@color/secondaryTextColor"
+            android:textColorHint="@color/secondaryTextColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddMeter"
+        android:id="@+id/btnAddGroup"
         style="@style/ContainedButtonStyle"
+        android:textColorHint="@color/secondaryTextColor"
+        app:hintTextColor="@color/secondaryTextColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

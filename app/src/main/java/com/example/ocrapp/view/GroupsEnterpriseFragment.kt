@@ -5,9 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.ocrapp.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ocrapp.adapter.GroupAdapter
+import com.example.ocrapp.databinding.FragmentGroupsEnterpriseBinding
+import com.example.ocrapp.viewmodel.GroupsViewModel
 
 class GroupsEnterpriseFragment : Fragment() {
+
+    private lateinit var binding: FragmentGroupsEnterpriseBinding
+    private lateinit var adapter: GroupAdapter
+    private lateinit var viewModel: GroupsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +27,34 @@ class GroupsEnterpriseFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_groups_enterprise, container, false)
+
+        binding = FragmentGroupsEnterpriseBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity()).get(GroupsViewModel::class.java)
+
+        adapter = GroupAdapter()
+
+        binding.rvGroups.adapter = adapter
+        binding.rvGroups.layoutManager = LinearLayoutManager(requireContext())
+
+        val separator = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        binding.rvGroups.addItemDecoration(separator)
+
+        viewModel.getGroups(adapter, binding.TVMessageGroups)
+
+        binding.floatingAddGroup.setOnClickListener {
+
+            context?.let {
+                AddGroupDialog(it, this, adapter).show()
+            }
+
+        }
+
+    }
+
 }
