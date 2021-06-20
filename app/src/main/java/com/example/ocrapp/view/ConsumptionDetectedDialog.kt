@@ -6,16 +6,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.ocrapp.R
 import com.example.ocrapp.databinding.DialogConsumptionBinding
+import com.example.ocrapp.model.Consumption
 import com.example.ocrapp.model.Meter
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context) {
 
     private lateinit var binding: DialogConsumptionBinding
+    val user = FirebaseAuth.getInstance().currentUser
+    val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,9 +39,9 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
 
         binding.apply {
 
-            btnRetry.setOnClickListener {  }
+            btnRetry.setOnClickListener { cancel() }
 
-            btnConfirm.setOnClickListener {  }
+            btnConfirm.setOnClickListener { addConsumption()  }
 
         }
 
@@ -42,8 +50,7 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
 
     private fun getMeters(){
 
-        val user = FirebaseAuth.getInstance().currentUser
-        val firestore = FirebaseFirestore.getInstance()
+
 
         val listMeters = ArrayList<Meter>()
 
@@ -70,5 +77,45 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
     }
 
 
+    private fun addConsumption(){
+
+        val selected = binding.menuMeters.selectedItem.toString()
+
+        user?.let {
+
+            val doc = firestore.collection("users").document(it.uid).collection("meters")
+                .document(selected).collection("consumptions").document()
+
+            val date = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(System.currentTimeMillis())
+
+            val rate = binding.editRate.text.toString()
+
+            val rateNumber = if(rate.isEmpty()){
+                0.0
+            }else{
+                rate.toDouble()
+            }
+
+            val consumption = Consumption(rateNumber,date,binding.editConsumption.text.toString().toDouble())
+
+            doc.set(consumption).addOnCompleteListener { addConsumption ->
+
+                if(addConsumption.isSuccessful){
+                    dismiss()
+                    Toast.makeText(context, "Se ha agreado el consumo", Toast.LENGTH_SHORT).show()
+                }
+
+            }.addOnFailureListener { error ->
+                Log.e("Error Consumption", "No added", error)
+            }
+
+
+        }
+
+
+
+
+
+    }
 
 }

@@ -54,10 +54,10 @@ class MetersViewModel: ViewModel() {
 
         user?.let {
 
-            val document =
-                firestore.collection("users").document(it.uid).collection("meters").document()
+            val meter = Meter(name, name, serial)
 
-            val meter = Meter(document.id, name, serial)
+            val document =
+                firestore.collection("users").document(it.uid).collection("meters").document(meter.name)
 
             adapter.meters.add(meter)
             adapter.notifyDataSetChanged()
