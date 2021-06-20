@@ -1,4 +1,4 @@
-package com.example.ocrapp.view
+    package com.example.ocrapp.view
 
 import android.os.Bundle
 import android.os.Handler

@@ -65,6 +65,7 @@
     <string name="previous">Previous</string>
     <string name="customer">Cliente</string>
     <string name="enterprise">Empresa</string>
+    <string name="enterpriseMeasure">Mediciones</string>
 
 
 </resources>
