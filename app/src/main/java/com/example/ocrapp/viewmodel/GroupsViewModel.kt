@@ -23,7 +23,7 @@ class GroupsViewModel : ViewModel() {
         val enterprise = auth.currentUser
 
         if (enterprise != null) {
-            firestore.collection("enterprise").document(enterprise.uid).collection("groups")
+            firestore.collection("users").document(enterprise.uid).collection("groups")
                 .get().addOnCompleteListener { queryMeters ->
 
                     if (queryMeters.isSuccessful) {
@@ -55,7 +55,7 @@ class GroupsViewModel : ViewModel() {
         enterprise?.let {
 
             val document =
-                firestore.collection("enterprise").document(it.uid).collection("groups").document()
+                firestore.collection("users").document(it.uid).collection("groups").document()
 
             val group = Group(document.id, name)
 

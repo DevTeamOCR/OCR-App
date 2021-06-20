@@ -288,8 +288,11 @@ class CameraFragment : Fragment() {
                 binding.progressBar.visibility = View.GONE
 
                 // Show info
-                Snackbar.make(binding.viewFinder,"Consumption: $detection",Snackbar.LENGTH_SHORT).show()
+                //Snackbar.make(binding.viewFinder,"Consumption: $detection",Snackbar.LENGTH_SHORT).show()
 
+                context?.let {
+                    ConsumptionDetectedDialog(it, detection).show()
+                }
 
             } catch (e: Exception) {
                 Log.e("Error", "Something fails")
