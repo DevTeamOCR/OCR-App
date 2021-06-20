@@ -1,5 +1,6 @@
 package com.example.ocrapp.viewmodel
 
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
@@ -43,6 +44,7 @@ class LoginViewModel : ViewModel() {
 
                                 val myUser = user.toObject<User>()
 
+                                Log.d("User:", "$myUser")
                                 if (myUser?.type.equals("customer")) {
 
                                     Navigation.findNavController(view)

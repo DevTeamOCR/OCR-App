@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
@@ -171,7 +172,7 @@ class CameraFragment : Fragment() {
             // Capture for quality
             imageCapture = ImageCapture.Builder()
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
-                .setTargetAspectRatio(AspectRatio.RATIO_4_3)
+                .setTargetRotation(Surface.ROTATION_0)
                 .build()
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -201,6 +202,7 @@ class CameraFragment : Fragment() {
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile)
             .build()
 
+        Log.e("Rotation", "${imageCapture.targetRotation}")
         imageCapture.takePicture(outputOptions, ContextCompat.getMainExecutor(requireContext()),
         object : ImageCapture.OnImageSavedCallback{
 
@@ -209,7 +211,6 @@ class CameraFragment : Fragment() {
                 Snackbar.make(binding.viewFinder, "Error taking picture", Snackbar.LENGTH_SHORT).show()
             }
 
-            @RequiresApi(Build.VERSION_CODES.Q)
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
 
                 showPhoto(photoFile)
@@ -219,6 +220,7 @@ class CameraFragment : Fragment() {
             }
 
         })
+
 
     }
 

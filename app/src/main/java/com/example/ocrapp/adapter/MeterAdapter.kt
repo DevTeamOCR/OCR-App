@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ocrapp.databinding.AdapterMeterBinding
 import com.example.ocrapp.model.Meter
 
-class MeterAdapter(private val meters: ArrayList<Meter>): RecyclerView.Adapter<MeterAdapter.MeterHolder>(){
+class MeterAdapter(): RecyclerView.Adapter<MeterAdapter.MeterHolder>(){
+
+    val meters = mutableListOf<Meter>()
 
     class MeterHolder(val binding : AdapterMeterBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -14,6 +16,10 @@ class MeterAdapter(private val meters: ArrayList<Meter>): RecyclerView.Adapter<M
 
     override fun onBindViewHolder(holder: MeterHolder, position: Int) {
 
+        val meter = meters[position]
+
+        holder.binding.TVNameMeter.text = meter.name
+        holder.binding.TVNumberComsumptions.text = "Consumos: 0"
 
     }
 
