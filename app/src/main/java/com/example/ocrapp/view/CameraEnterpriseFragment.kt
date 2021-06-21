@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
@@ -26,6 +27,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -279,7 +283,7 @@ class CameraEnterpriseFragment : Fragment() {
                 var result = detectionResponse.await()
 
                 // Converting response to a readable data
-                val detection = UtilsDetection(result).consumptionDetected(0.5)
+                val detection = UtilsDetection(result).consumptionDetected(0.9)
 
                 // Stop loading...
                 binding.progressBar.isIndeterminate = false

@@ -281,7 +281,7 @@ class CameraFragment : Fragment() {
                 var result = detectionResponse.await()
 
                 // Converting response to a readable data
-                val detection = UtilsDetection(result).consumptionDetected(0.5)
+                val detection = UtilsDetection(result).consumptionDetected(0.9)
 
                 // Stop loading...
                 binding.progressBar.isIndeterminate = false
