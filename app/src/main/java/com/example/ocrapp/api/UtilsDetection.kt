@@ -79,4 +79,25 @@ class UtilsDetection(val response: DetectionResponse) {
 
         return numberString.toInt()
     }
+
+    fun meanReliability(reliability: Double): Double{
+
+        var mean = 0.0
+        var counter = 0.0
+
+        val sortedDetections = sortDetectionsByBoxXmin()
+
+        for(detection in sortedDetections){
+
+            if(detection.score.value >= reliability){
+
+                mean.plus(detection.score.value)
+                counter.plus(1)
+
+            }
+        }
+
+        return mean.div(counter)
+
+    }
 }
