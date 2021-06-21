@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_groups_enterprise" />
     <fragment
         android:id="@+id/cameraEnterprise"
-        android:name="com.example.ocrapp.view.CameraFragment"
+        android:name="com.example.ocrapp.view.CameraEnterpriseFragment"
         android:label="fragment_camera"
         tools:layout="@layout/fragment_camera" />
 
