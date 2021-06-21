@@ -54,10 +54,10 @@ class GroupsViewModel : ViewModel() {
 
         enterprise?.let {
 
+            val group = Group(name, name)
             val document =
-                firestore.collection("users").document(it.uid).collection("groups").document()
-
-            val group = Group(document.id, name)
+                firestore.collection("users").document(it.uid).collection("groups")
+                    .document(group.name)
 
             adapter.groups.add(group)
             adapter.notifyDataSetChanged()
