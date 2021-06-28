@@ -19,6 +19,7 @@ class ConsumptionAdapter(): RecyclerView.Adapter<ConsumptionAdapter.ConsumptionH
         val consumption = consumptions[position]
         holder.binding.TVNameMeter.text = "Consumo # ${position+1}"
         holder.binding.TVDateComsumption.text = consumption.date
+        holder.binding.tvKWh.text = "${consumption.value.toInt()} KWh"
 
         if(position >= 1 && position < consumptions.size){
 
