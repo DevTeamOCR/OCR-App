@@ -13,13 +13,13 @@ import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
-import com.example.ocrapp.api.UtilsDetection
 import com.example.ocrapp.databinding.FragmentCustomerFeedBinding
 import com.example.ocrapp.model.Consumption
 import com.example.ocrapp.model.Meter
 import com.example.ocrapp.util.AppUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.toObject
 
 class CustomerFeed : Fragment() {
@@ -56,8 +56,6 @@ class CustomerFeed : Fragment() {
         cartesian.crosshair().enabled(true)
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
-
-        consumptions.sortedBy { it.timestamp }
 
         Log.e("consumptions",consumptions.toString())
 
@@ -113,7 +111,7 @@ class CustomerFeed : Fragment() {
 
 
                         firestore.collection("users").document(it.uid).collection("meters").document(
-                            meter.name).collection("consumptions").get()
+                            meter.name).collection("consumptions").orderBy("timestamp").limit(12).get()
                             .addOnCompleteListener { consumptions ->
 
                                 for(document in consumptions.result!!){

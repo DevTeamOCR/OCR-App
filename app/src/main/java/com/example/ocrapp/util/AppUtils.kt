@@ -55,7 +55,7 @@ object AppUtils {
 
     }
 
-    fun computeConsumption(previous: Double, current: Double): Number{
+    fun computeConsumption(previous: Double, current: Double): Double{
 
         return if(current < previous){
             abs(99999-previous-current)
@@ -65,7 +65,7 @@ object AppUtils {
 
     }
 
-    fun computeCostConsumption(consumption: Int, rate: Double): Double{
+    fun computeCostConsumption(consumption: Double, rate: Double): Double{
         return consumption.times(rate)
     }
 
