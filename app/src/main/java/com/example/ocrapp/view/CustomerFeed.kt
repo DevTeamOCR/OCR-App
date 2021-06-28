@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.anychart.AnyChart
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
@@ -13,6 +16,8 @@ import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
+import com.example.ocrapp.adapter.ConsumptionAdapter
+import com.example.ocrapp.adapter.MeterAdapter
 import com.example.ocrapp.databinding.FragmentCustomerFeedBinding
 import com.example.ocrapp.model.Consumption
 import com.example.ocrapp.model.Meter
@@ -25,6 +30,8 @@ import com.google.firebase.firestore.ktx.toObject
 class CustomerFeed : Fragment() {
 
     private lateinit var binding: FragmentCustomerFeedBinding
+    private lateinit var adapter: ConsumptionAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,16 @@ class CustomerFeed : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getConsumptions()
+
+        adapter = ConsumptionAdapter()
+
+        binding.rvConsumptions.adapter = adapter
+        binding.rvConsumptions.layoutManager = LinearLayoutManager(requireContext())
+
+        val separator = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
+        binding.rvConsumptions.addItemDecoration(separator)
+
+
     }
 
     private fun buildChart(consumptions: List<Consumption>){
@@ -117,6 +134,10 @@ class CustomerFeed : Fragment() {
                                 for(document in consumptions.result!!){
                                     listConsumption.add(document.toObject())
                                 }
+
+
+                                adapter.consumptions = listConsumption
+                                adapter.notifyDataSetChanged()
 
                                 buildChart(listConsumption)
 
