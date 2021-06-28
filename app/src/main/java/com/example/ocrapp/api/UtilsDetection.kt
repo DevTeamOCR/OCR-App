@@ -1,6 +1,7 @@
 package com.example.ocrapp.api
 
 import com.example.ocrapp.model.Detection
+import kotlin.math.abs
 
 class UtilsDetection(val response: DetectionResponse) {
 
@@ -100,4 +101,19 @@ class UtilsDetection(val response: DetectionResponse) {
         return mean.div(counter)
 
     }
+
+    fun computeConsumption(previous: Int, current: Int): Int{
+
+        return if(current < previous){
+            abs(99999-previous-current)
+        }else{
+            current - previous
+        }
+
+    }
+
+    fun computeCostConsumption(consumption: Int, rate: Double): Double{
+        return consumption.times(rate)
+    }
+
 }

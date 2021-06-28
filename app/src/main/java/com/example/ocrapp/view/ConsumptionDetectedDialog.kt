@@ -41,7 +41,11 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
 
             btnRetry.setOnClickListener { cancel() }
 
-            btnConfirm.setOnClickListener { addConsumption()  }
+            btnConfirm.setOnClickListener {
+              addConsumption()
+
+
+            }
 
         }
 
@@ -49,8 +53,6 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
 
 
     private fun getMeters(){
-
-
 
         val listMeters = ArrayList<Meter>()
 
@@ -102,19 +104,14 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
 
                 if(addConsumption.isSuccessful){
                     dismiss()
-                    Toast.makeText(context, "Se ha agreado el consumo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Se ha agregado el consumo", Toast.LENGTH_SHORT).show()
                 }
 
             }.addOnFailureListener { error ->
                 Log.e("Error Consumption", "No added", error)
             }
 
-
         }
-
-
-
-
 
     }
 

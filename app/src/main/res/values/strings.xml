@@ -66,6 +66,7 @@
     <string name="customer">Cliente</string>
     <string name="enterprise">Empresa</string>
     <string name="enterpriseMeasure">Mediciones</string>
+    <string name="advices">Consejos</string>
 
 
 </resources>
