@@ -114,38 +114,45 @@ class CustomerFeed : Fragment() {
         val auth = FirebaseAuth.getInstance()
         val firestore = FirebaseFirestore.getInstance()
 
-        var meter: Meter = Meter()
+        var meter: Meter? = null
         val listConsumption = mutableListOf<Consumption>()
 
         auth.currentUser?.let {
             firestore.collection("users").document(it.uid).collection("meters").get()
                 .addOnCompleteListener { queryMeters ->
 
-                    if(queryMeters.isSuccessful){
-                        for(document in queryMeters.result!!){
+                    if(queryMeters.isSuccessful) {
+
+                        for (document in queryMeters.result!!) {
                             meter = document.toObject()
                         }
 
+                        if(meter != null) {
+                            firestore.collection("users").document(it.uid).collection("meters")
+                                .document(
+                                    meter!!.name
+                                ).collection("consumptions").orderBy("timestamp").limit(12).get()
+                                .addOnCompleteListener { consumptions ->
 
-                        firestore.collection("users").document(it.uid).collection("meters").document(
-                            meter.name).collection("consumptions").orderBy("timestamp").limit(12).get()
-                            .addOnCompleteListener { consumptions ->
-
-                                for(document in consumptions.result!!){
-                                    listConsumption.add(document.toObject())
-                                }
+                                    for (document in consumptions.result!!) {
+                                        listConsumption.add(document.toObject())
+                                    }
 
 
-                                adapter.consumptions = listConsumption
-                                adapter.notifyDataSetChanged()
+                                    adapter.consumptions = listConsumption
+                                    adapter.notifyDataSetChanged()
 
-                                buildChart(listConsumption)
+                                    buildChart(listConsumption)
 
-                            }.addOnFailureListener {  }
+                                }.addOnFailureListener { }
 
-                    }
+                        }
+                        }
+
+
                 }
                 .addOnFailureListener {  }
+
         }
 
 

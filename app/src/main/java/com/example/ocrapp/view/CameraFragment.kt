@@ -188,6 +188,8 @@ class CameraFragment : Fragment() {
 
         }, ContextCompat.getMainExecutor(requireContext()))
 
+        Snackbar.make(binding.viewFinder,"Gira la camara hacia la  izquierda para realizar la lectura", Snackbar.LENGTH_LONG).show()
+
     }
 
     // Take photo and save in storage
