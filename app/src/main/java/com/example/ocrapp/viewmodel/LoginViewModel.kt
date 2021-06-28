@@ -15,6 +15,8 @@ import com.google.firebase.firestore.ktx.toObject
 
 class LoginViewModel : ViewModel() {
 
+
+
     private val auth = FirebaseAuth.getInstance()
     private val firestore = FirebaseFirestore.getInstance()
 

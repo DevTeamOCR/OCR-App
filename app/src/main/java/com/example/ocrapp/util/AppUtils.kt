@@ -1,7 +1,9 @@
 package com.example.ocrapp.util
 
 import androidx.core.widget.addTextChangedListener
+import com.example.ocrapp.model.Consumption
 import com.google.android.material.textfield.TextInputLayout
+import kotlin.math.abs
 
 object AppUtils {
 
@@ -52,5 +54,20 @@ object AppUtils {
         return false
 
     }
+
+    fun computeConsumption(previous: Double, current: Double): Number{
+
+        return if(current < previous){
+            abs(99999-previous-current)
+        }else{
+            current - previous
+        }
+
+    }
+
+    fun computeCostConsumption(consumption: Int, rate: Double): Double{
+        return consumption.times(rate)
+    }
+
 
 }

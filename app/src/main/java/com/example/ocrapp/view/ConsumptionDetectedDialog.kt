@@ -98,7 +98,7 @@ class ConsumptionDetectedDialog(context: Context,var value: Int): Dialog(context
                 rate.toDouble()
             }
 
-            val consumption = Consumption(rateNumber,date,binding.editConsumption.text.toString().toDouble())
+            val consumption = Consumption(rateNumber,date,binding.editConsumption.text.toString().toDouble(),System.currentTimeMillis())
 
             doc.set(consumption).addOnCompleteListener { addConsumption ->
 

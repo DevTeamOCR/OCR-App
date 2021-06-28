@@ -1,6 +1,7 @@
 package com.example.ocrapp.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,14 @@ import com.anychart.data.Set
 import com.anychart.enums.Anchor
 import com.anychart.enums.MarkerType
 import com.anychart.enums.TooltipPositionMode
+import com.example.ocrapp.api.UtilsDetection
 import com.example.ocrapp.databinding.FragmentCustomerFeedBinding
+import com.example.ocrapp.model.Consumption
+import com.example.ocrapp.model.Meter
+import com.example.ocrapp.util.AppUtils
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 
 class CustomerFeed : Fragment() {
 
@@ -31,61 +39,97 @@ class CustomerFeed : Fragment() {
         return binding.root
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getConsumptions()
+    }
 
+    private fun buildChart(consumptions: List<Consumption>){
+        val cartesian = AnyChart.line()
+        cartesian.animation(true)
+        cartesian.title("Consumos")
 
-        binding.apply {
+        cartesian.yAxis(0).title("Consumo (KWh)")
+        cartesian.xAxis(0).title("Consumo #")
 
-            val cartesian = AnyChart.line()
-            cartesian.animation(true)
-            cartesian.title("Consumos")
+        cartesian.crosshair().enabled(true)
 
-            cartesian.yAxis(0).title("Consumo (KWh)")
-            cartesian.xAxis(0).title("Mes")
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
 
-            cartesian.crosshair().enabled(true)
+        consumptions.sortedBy { it.timestamp }
 
-            cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        Log.e("consumptions",consumptions.toString())
 
-            val entries = ArrayList<DataEntry>()
-            entries.add(ValueDataEntry("01",125))
-            entries.add(ValueDataEntry("02", 325))
-            entries.add(ValueDataEntry("03", 240))
-            entries.add(ValueDataEntry("04", 80))
-            entries.add(ValueDataEntry("05", 520))
-            entries.add(ValueDataEntry("06", 140))
-            entries.add(ValueDataEntry("07", 200))
-            entries.add(ValueDataEntry("08", 300))
-            entries.add(ValueDataEntry("09", 148))
-            entries.add(ValueDataEntry("10", 180))
-            entries.add(ValueDataEntry("11", 700))
-            entries.add(ValueDataEntry("12", 964))
+        val entries = ArrayList<DataEntry>()
 
+        for((index,consumption) in consumptions.withIndex()){
+            if(index + 1 < consumptions.size){
 
-
-            val set = Set.instantiate()
-            set.data(entries)
-            val seriesMapping = set.mapAs("{x: 'x', value: 'value' }")
-
-            val serie = cartesian.line(seriesMapping)
-            serie.hovered().markers().enabled(true)
-            serie.hovered().markers()
-                .type(MarkerType.CIRCLE)
-                .size(4)
-            serie.tooltip()
-                .position("right")
-                .anchor(Anchor.LEFT_CENTER)
-                .offsetX(5)
-                .offsetY(5)
-
-            cartesian.legend().enabled(true)
-            cartesian.legend().fontSize(13)
-            cartesian.legend().padding(0,0,10,0)
-
-            lineChart.setChart(cartesian)
-
+                entries.add(ValueDataEntry(index+1, AppUtils.computeConsumption(consumptions[index].value,consumptions[index+1].value)))
+                Log.e("bug:","Prev: ${consumptions[index].value} Current: ${consumptions[index+1].value}")
+            }
         }
+
+
+        val set = Set.instantiate()
+        set.data(entries)
+        val seriesMapping = set.mapAs("{x: 'x', value: 'value' }")
+
+        val serie = cartesian.line(seriesMapping)
+        serie.hovered().markers().enabled(true)
+        serie.hovered().markers()
+            .type(MarkerType.CIRCLE)
+            .size(4)
+        serie.tooltip()
+            .position("right")
+            .anchor(Anchor.LEFT_CENTER)
+            .offsetX(5)
+            .offsetY(5)
+
+        cartesian.legend().enabled(true)
+        cartesian.legend().fontSize(13)
+        cartesian.legend().padding(0,0,10,0)
+
+        binding.lineChart.setChart(cartesian)
+    }
+
+    fun getConsumptions(){
+
+        val auth = FirebaseAuth.getInstance()
+        val firestore = FirebaseFirestore.getInstance()
+
+        var meter: Meter = Meter()
+        val listConsumption = mutableListOf<Consumption>()
+
+        auth.currentUser?.let {
+            firestore.collection("users").document(it.uid).collection("meters").get()
+                .addOnCompleteListener { queryMeters ->
+
+                    if(queryMeters.isSuccessful){
+                        for(document in queryMeters.result!!){
+                            meter = document.toObject()
+                        }
+
+
+                        firestore.collection("users").document(it.uid).collection("meters").document(
+                            meter.name).collection("consumptions").get()
+                            .addOnCompleteListener { consumptions ->
+
+                                for(document in consumptions.result!!){
+                                    listConsumption.add(document.toObject())
+                                }
+
+                                buildChart(listConsumption)
+
+                            }.addOnFailureListener {  }
+
+                    }
+                }
+                .addOnFailureListener {  }
+        }
+
+
 
     }
 
