@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_customer"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.ocrapp.view.CustomerFeed"
+        android:label="fragment_customer_feed"
+        tools:layout="@layout/fragment_customer_feed" />
+    <fragment
+        android:id="@+id/metersFragment"
+        android:name="com.example.ocrapp.view.MetersFragment"
+        android:label="fragment_meters"
+        tools:layout="@layout/fragment_meters" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.ocrapp.view.CameraFragment"
+        android:label="fragment_camera"
+        tools:layout="@layout/fragment_camera" />
+</navigation>
